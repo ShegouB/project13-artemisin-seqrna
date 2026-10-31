@@ -1,0 +1,53 @@
+Detecting adapter sequence for read1...
+No adapter detected for read1
+
+Detecting adapter sequence for read2...
+>Illumina TruSeq Adapter Read 2
+AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
+
+Read1 before filtering:
+total reads: 1271811
+total bases: 176585364
+Q20 bases: 173479958(98.2414%)
+Q30 bases: 172757787(97.8324%)
+Q40 bases: 2039211(1.1548%)
+
+Read2 before filtering:
+total reads: 1271811
+total bases: 189969339
+Q20 bases: 184217075(96.972%)
+Q30 bases: 183055967(96.3608%)
+Q40 bases: 830217(0.437027%)
+
+Read1 after filtering:
+total reads: 1262280
+total bases: 174927749
+Q20 bases: 172154884(98.4149%)
+Q30 bases: 171472990(98.025%)
+Q40 bases: 2035270(1.16349%)
+
+Read2 after filtering:
+total reads: 1262280
+total bases: 174803471
+Q20 bases: 170164013(97.3459%)
+Q30 bases: 169261325(96.8295%)
+Q40 bases: 827150(0.473189%)
+
+Filtering result:
+reads passed filter: 2524560
+reads failed due to low quality: 7074
+reads failed due to too many N: 11916
+reads failed due to too short: 72
+reads failed due to adapter dimer: 0
+reads with adapter trimmed: 821526
+bases trimmed due to adapters: 14102154
+
+Duplication rate: 6.07205%
+
+Insert size peak (evaluated by paired-end reads): 137
+
+JSON report: /kaggle/working/project13/results/fastp/SRR1605340.json
+HTML report: /kaggle/working/project13/results/fastp/SRR1605340.html
+
+fastp -i fastq/SRR1605340_1.fastq.gz -I fastq/SRR1605340_2.fastq.gz -o fastq/SRR1605340_t1.fastq.gz -O fastq/SRR1605340_t2.fastq.gz --detect_adapter_for_pe -w 4 --length_required 30 -j /kaggle/working/project13/results/fastp/SRR1605340.json -h /kaggle/working/project13/results/fastp/SRR1605340.html 
+fastp v1.4.0, time used: 22 seconds

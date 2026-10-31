@@ -1,0 +1,106 @@
+candidate genes: 30 | anchor: 2 | symbol: 14 | product: 14 
+anchors present in the annotation: K13 TRUE, KIC1 TRUE 
+
+== candidates (curate by gene symbol and product; ignore the DE columns when deciding membership) ==
+         locus    gene                                          product   match
+ PF3D7_0104300    UBP1 putative ubiquitin carboxyl-terminal hydrolase 1  symbol
+ PF3D7_0413900   USP13 putative ubiquitin carboxyl-terminal hydrolase 1 product
+ PF3D7_0503600    MyoB                            myosin family protein product
+ PF3D7_0606000    KIC1                                     protein KIC1  anchor
+ PF3D7_0609700    KIC6                                     protein KIC6  symbol
+ PF3D7_0724800    <NA>         putative kelch domain-containing protein product
+ PF3D7_0813000    KIC7                                     protein KIC7  symbol
+ PF3D7_0914400    KIC3                                     protein KIC3  symbol
+ PF3D7_1014900    KIC8                                     protein KIC8  symbol
+ PF3D7_1022600 Kelch10                                kelch protein K10 product
+ PF3D7_1025000   EPS15                               Eps15-like protein  symbol
+ PF3D7_1122500   KIC10                                    protein KIC10  symbol
+ PF3D7_1125700    <NA>         putative kelch domain-containing protein product
+ PF3D7_1125800    <NA>         putative kelch domain-containing protein product
+ PF3D7_1131600    <NA>                  Kelch repeat-containing protein product
+ PF3D7_1138700    KIC5                                     protein KIC5  symbol
+ PF3D7_1205400    <NA>                  Kelch repeat-containing protein product
+ PF3D7_1210600    <NA>                           putative kelch protein product
+ PF3D7_1213400    <NA>                  Kelch repeat-containing protein product
+ PF3D7_1218300  AP2-MU                          AP-2 complex subunit mu  symbol
+ PF3D7_1227700    KIC2                                     protein KIC2  symbol
+ PF3D7_1246300    KIC4                                     protein KIC4  symbol
+ PF3D7_1251200    <NA>                                          coronin product
+ PF3D7_1329100    MyoF                                putative myosin F  symbol
+ PF3D7_1342600    MyoA                            myosin family protein product
+ PF3D7_1343700 Kelch13                                kelch protein K13  anchor
+ PF3D7_1416200    MCA3                                    metacaspase-3 product
+ PF3D7_1438400    MCA2                                    metacaspase-2  symbol
+ PF3D7_1442400    KIC9                                     protein KIC9  symbol
+ PF3D7_1466100    PPKL protein phosphatase containing kelch-like domain product
+
+== DE columns: baseMean, log2FC, padj (primary), |Wald| percentile within stage ==
+         locus    gene ring_bm ring_lfc ring_padj ring_pct troph_bm troph_lfc
+ PF3D7_0104300    UBP1     543     0.20      0.61       55      565      0.53
+ PF3D7_0413900   USP13      61    -0.09      0.93       16      250     -0.83
+ PF3D7_0503600    MyoB      94     0.05      0.95       11       69      0.09
+ PF3D7_0606000    KIC1     529     0.02      0.98        7      240      1.15
+ PF3D7_0609700    KIC6     240     0.10      0.86       30      115      1.61
+ PF3D7_0724800    <NA>      55     0.18      0.84       31      178      0.17
+ PF3D7_0813000    KIC7     234     0.29      0.42       68      252      0.82
+ PF3D7_0914400    KIC3      50     0.07      0.95       12       85      0.48
+ PF3D7_1014900    KIC8      21     0.13      0.94       15       77     -0.62
+ PF3D7_1022600 Kelch10     110    -0.01      0.99        2      110     -0.05
+ PF3D7_1025000   EPS15     386     0.02      0.98        6      534      0.93
+ PF3D7_1122500   KIC10      NA       NA        NA       NA       29     -1.25
+ PF3D7_1125700    <NA>     208    -0.07      0.91       20      127      1.65
+ PF3D7_1125800    <NA>     414     0.13      0.77       41      121      2.11
+ PF3D7_1131600    <NA>      NA       NA        NA       NA       NA        NA
+ PF3D7_1138700    KIC5      63     0.44      0.46       65       35      1.00
+ PF3D7_1205400    <NA>       8     1.36        NA       70       26      0.50
+ PF3D7_1210600    <NA>     112    -0.61      0.11       84      238     -0.56
+ PF3D7_1213400    <NA>      NA       NA        NA       NA       NA        NA
+ PF3D7_1218300  AP2-MU     174     0.10      0.88       26      118      0.82
+ PF3D7_1227700    KIC2     163     0.13      0.82       35      226      0.88
+ PF3D7_1246300    KIC4     376     0.27      0.39       70      290      0.71
+ PF3D7_1251200    <NA>     697     0.25      0.38       71      173      1.14
+ PF3D7_1329100    MyoF      55     0.21      0.82       35      428     -0.04
+ PF3D7_1342600    MyoA    1354     0.24      0.39       70      487      2.22
+ PF3D7_1343700 Kelch13     608    -0.17      0.63       54      268      0.94
+ PF3D7_1416200    MCA3      NA       NA        NA       NA      129     -0.44
+ PF3D7_1438400    MCA2      22     1.01      0.26       77       69      0.28
+ PF3D7_1442400    KIC9      10     2.20        NA       87      110      1.12
+ PF3D7_1466100    PPKL      10     0.13        NA       10       90      1.37
+ troph_padj troph_pct schiz_bm schiz_lfc schiz_padj schiz_pct
+    7.3e-04        80     1412      0.15          1        48
+    2.1e-05        85      161      0.46          1        93
+    8.5e-01         9      621      0.34          1        87
+    2.7e-08        91      327     -0.01          1         4
+    2.2e-08        91      388      0.06          1        20
+    5.5e-01        26      253      0.15          1        47
+    8.6e-05        84      205     -0.34          1        82
+    1.7e-01        49      326     -0.02          1         5
+    7.7e-02        59      375     -0.28          1        77
+    9.1e-01         6       38      0.16          1        34
+    1.0e-09        93     1005     -0.14          1        47
+    2.1e-02        68       24      0.47          1        70
+    3.0e-10        93     1091      0.08          1        27
+    7.9e-14        96     1396      0.19          1        56
+         NA        NA       NA        NA         NA        NA
+    4.8e-02        62       91     -0.39          1        78
+    4.5e-01        32       37     -0.17          1        34
+    6.7e-03        73      115     -0.14          1        36
+         NA        NA       13      1.04          1        89
+    3.0e-03        76      227      0.04          1        14
+    1.4e-05        86      448      0.18          1        53
+    1.5e-04        83      865      0.17          1        57
+    1.9e-06        88     4262      0.12          1        38
+    8.5e-01         9      459      0.04          1        14
+    1.3e-42       100     4610      0.19          1        50
+    1.0e-06        89      433      0.04          1        14
+    1.2e-01        54      129      0.20          1        48
+    5.0e-01        29      227      0.34          1        83
+    2.0e-04        82       93     -0.03          1         7
+    7.9e-06        87       87      0.07          1        19
+
+== context: genome-wide fraction significant vs candidates ==
+ring   genome: 413 of 3090 tested significant (13.4%) | candidates: 0 of 30 significant, 23 of 30 tested | consensus 0
+troph  genome: 1703 of 4497 tested significant (37.9%) | candidates: 19 of 30 significant, 28 of 30 tested | consensus 15
+schiz  genome: 0 of 4301 tested significant (0.0%) | candidates: 0 of 30 significant, 29 of 30 tested | consensus 0
+
+DONE

@@ -1,0 +1,106 @@
+untreated samples used for the stage axes: 6 | genes with axes: 4648 
+
+========== troph ==========
+genes used: 3307 | set A genes among them: 14
+stage axes (log2FC, untreated): set A median a1 (troph vs ring) -1.84 vs other genes -0.11 | median a2 (schiz vs troph) 2.44 vs -0.30
+fit on all non-set genes          genes=3293 R2=0.212 slope a1=-0.140 slope a2=0.137
+   set A median log2FC            0.818 | matched random 0.001 | p=0.0004
+   set A median stage-adjusted    0.153 | matched random -0.043 | p=0.1782
+fit on excluding ribosomal genes  genes=3156 R2=0.219 slope a1=-0.163 slope a2=0.109
+   set A median log2FC            0.818 | matched random -0.005 | p=0.0004
+   set A median stage-adjusted    0.158 | matched random -0.067 | p=0.1410
+per-gene (a1 = troph vs ring, a2 = schiz vs troph in untreated samples; resid = DHA log2FC not explained by stage axes):
+         locus  name baseMean log2FC    a1   a2 resid
+ PF3D7_1218300 AP2MU   118.45   0.82 -1.64 1.83  0.26
+ PF3D7_1025000 EPS15   533.71   0.93 -2.02 2.59  0.22
+ PF3D7_1343700   K13   268.25   0.94 -3.46 1.68  0.15
+ PF3D7_0606000  KIC1   239.63   1.15 -3.87 2.24  0.23
+ PF3D7_1122500 KIC10       NA     NA    NA   NA    NA
+ PF3D7_1227700  KIC2   225.97   0.88 -2.16 2.52  0.16
+ PF3D7_0914400  KIC3    85.21   0.48 -0.44 1.56  0.13
+ PF3D7_1246300  KIC4   290.32   0.71 -2.61 3.32 -0.19
+ PF3D7_1138700  KIC5       NA     NA    NA   NA    NA
+ PF3D7_0609700  KIC6   115.03   1.61 -4.26 4.12  0.38
+ PF3D7_0813000  KIC7   252.27   0.82 -1.65 0.27  0.48
+ PF3D7_1014900  KIC8    76.88  -0.62 -1.19 3.61 -1.35
+ PF3D7_1442400  KIC9   110.41   1.12 -0.95 2.37  0.59
+ PF3D7_1438400  MCA2    69.48   0.28 -1.60 3.82 -0.54
+ PF3D7_1329100  MyoF   428.33  -0.04 -0.05 1.10 -0.27
+ PF3D7_0104300  UBP1   564.88   0.53 -3.44 3.24 -0.47
+
+========== ring ==========
+genes used: 1994 | set A genes among them: 11
+stage axes (log2FC, untreated): set A median a1 (troph vs ring) -2.61 vs other genes -0.83 | median a2 (schiz vs troph) 2.52 vs -0.36
+fit on all non-set genes          genes=1983 R2=0.106 slope a1=0.082 slope a2=0.124
+   set A median log2FC            0.135 | matched random -0.087 | p=0.0608
+   set A median stage-adjusted    0.040 | matched random -0.029 | p=0.2719
+fit on excluding ribosomal genes  genes=1887 R2=0.094 slope a1=0.073 slope a2=0.114
+   set A median log2FC            0.135 | matched random -0.083 | p=0.0668
+   set A median stage-adjusted    0.018 | matched random -0.044 | p=0.2921
+per-gene (a1 = troph vs ring, a2 = schiz vs troph in untreated samples; resid = DHA log2FC not explained by stage axes):
+         locus  name baseMean log2FC    a1   a2 resid
+ PF3D7_1218300 AP2MU   173.91   0.10 -1.64 1.83 -0.01
+ PF3D7_1025000 EPS15   385.59   0.02 -2.02 2.59 -0.16
+ PF3D7_1343700   K13   607.55  -0.17 -3.46 1.68 -0.11
+ PF3D7_0606000  KIC1   528.70   0.02 -3.87 2.24  0.04
+ PF3D7_1122500 KIC10       NA     NA    NA   NA    NA
+ PF3D7_1227700  KIC2   162.92   0.13 -2.16 2.52 -0.02
+ PF3D7_0914400  KIC3       NA     NA    NA   NA    NA
+ PF3D7_1246300  KIC4   376.30   0.27 -2.61 3.32  0.05
+ PF3D7_1138700  KIC5    62.92   0.44 -4.26 2.71  0.44
+ PF3D7_0609700  KIC6   240.15   0.10 -4.26 4.12 -0.08
+ PF3D7_0813000  KIC7   233.58   0.29 -1.65 0.27  0.38
+ PF3D7_1014900  KIC8       NA     NA    NA   NA    NA
+ PF3D7_1442400  KIC9       NA     NA    NA   NA    NA
+ PF3D7_1438400  MCA2       NA     NA    NA   NA    NA
+ PF3D7_1329100  MyoF    54.74   0.21 -0.05 1.10  0.06
+ PF3D7_0104300  UBP1   543.39   0.20 -3.44 3.24  0.06
+exported ranked list ring: 3497 genes
+exported ranked list troph: 4497 genes
+exported ranked list schiz: 4301 genes
+
+top 20 trophozoite consensus genes (for annotation):
+         locus    gene                                          product
+ PF3D7_1226100    HAD3                             HAD family hydrolase
+ PF3D7_0501300    SBP1                       skeleton-binding protein 1
+ PF3D7_0525000    <NA>       zinc finger CCCH domain-containing protein
+ PF3D7_0113700    <NA>                   heat shock protein 40, type II
+ PF3D7_0702500    <NA>                          uncharacterized protein
+ PF3D7_1353100    <NA>                          uncharacterized protein
+ PF3D7_0830500 TryThrA tryptophan/threonine-rich antigen family protein
+ PF3D7_0114000    <NA>                        exported protein family 1
+ PF3D7_0513300     PNP                         nucleoside phosphorylase
+ PF3D7_0702400   SEMP1                small exported membrane protein 1
+ PF3D7_0424500 FIKK4.1     serine/threonine protein kinase, FIKK family
+ PF3D7_1115800    <NA>                          uncharacterized protein
+ PF3D7_1116800  HSP101                           heat shock protein 101
+ PF3D7_0731200    <NA>                          uncharacterized protein
+ PF3D7_1474000    <NA>                          uncharacterized protein
+ PF3D7_1436300 PTEX150                     translocon component PTEX150
+ PF3D7_1201100    <NA>    RESA-like protein with PHIST and DnaJ domains
+ PF3D7_1473700  NUP116               putative nucleoporin NUP116/NSP116
+ PF3D7_1401500    <NA>                                putative esterase
+ PF3D7_0220300    <NA>                          uncharacterized protein
+  baseMean    log2FC log2FC_shrunk         padj padj_vs_untreated
+  231.1058  4.883352      4.842740 7.646162e-49      6.717490e-43
+  642.0191  2.908619      2.893528 6.876149e-76      1.172525e-47
+  620.2712  2.396411      2.381133 5.354444e-60      1.803692e-45
+  308.1141  3.111041      3.085603 8.037613e-49      1.470944e-34
+  650.4915  2.311319      2.295878 4.033159e-57      7.148154e-39
+  323.5154  3.350426      3.325948 7.318471e-55      7.762446e-36
+  210.7436  4.313084      4.274659 9.827945e-46      1.231317e-30
+  148.9037  4.675108      4.617506 1.831790e-33      1.231317e-30
+ 4142.8277 -1.568607     -1.559269 3.514217e-58      1.321698e-36
+  351.1296  2.536584      2.514207 3.628348e-44      8.510249e-33
+  145.0539  4.240237      4.187652 6.914696e-33      2.777106e-29
+  366.8394  2.503328      2.479820 2.110869e-41      6.761647e-38
+  623.5430  2.014947      1.997912 1.008637e-43      9.506851e-24
+  141.5816  4.145954      4.092936 4.504813e-32      1.969114e-26
+  140.8317  3.739610      3.689207 2.802002e-30      1.913119e-28
+  501.3913  2.315921      2.298119 1.118087e-49      2.853061e-34
+  478.4257  5.456250      5.430660 1.268665e-87      2.669573e-25
+  126.5656  4.767780      4.695366 2.131322e-27      2.515760e-24
+  121.0165  5.009322      4.930874 1.627305e-26      3.149006e-23
+  133.2287  4.434210      4.374378 1.782303e-30      1.910502e-21
+
+DONE

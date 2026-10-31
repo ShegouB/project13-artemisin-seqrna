@@ -1,0 +1,92 @@
+count matrix: 5611 18 
+       
+        DHA untreated vehicle
+  ring    2         2       2
+  troph   2         2       2
+  schiz   2         2       2
+annotated loci: 5611 | ribosomal protein genes: 141 | rRNA loci: 22 
+
+== library composition ==
+           stage treatment replicate assigned rrna_share rp_share
+SRR1605342  ring       DHA      rep1  1313413     0.0012    0.164
+SRR1605343  ring       DHA      rep2  1303622     0.0010    0.155
+SRR1605330  ring untreated      rep1   969069     0.0011    0.144
+SRR1605331  ring untreated      rep2  1626762     0.0043    0.097
+SRR1605336  ring   vehicle      rep1  1648729     0.0046    0.183
+SRR1605337  ring   vehicle      rep2  1301832     0.0071    0.167
+SRR1605344 troph       DHA      rep1  1433055     0.0010    0.071
+SRR1605345 troph       DHA      rep2  1592961     0.0006    0.067
+SRR1605332 troph untreated      rep1  1532946     0.0005    0.111
+SRR1605333 troph untreated      rep2  1555519     0.0002    0.121
+SRR1605338 troph   vehicle      rep1  1327371     0.0006    0.103
+SRR1605339 troph   vehicle      rep2  1304195     0.0008    0.105
+SRR1605346 schiz       DHA      rep1  1402504     0.0013    0.036
+SRR1605347 schiz       DHA      rep2  1466429     0.0009    0.049
+SRR1605334 schiz untreated      rep1  1390797     0.0005    0.027
+SRR1605335 schiz untreated      rep2  1279691     0.0016    0.037
+SRR1605340 schiz   vehicle      rep1  1115777     0.0008    0.038
+SRR1605341 schiz   vehicle      rep2  1078871     0.0012    0.039
+
+== PCA, 18 samples, top 500 variable genes ==
+variance explained PC1-4: 59 30.3 4.4 1.9 
+           stage treatment replicate   PC1   PC2   PC3
+SRR1605342  ring       DHA      rep1 -51.8 -11.1   2.2
+SRR1605343  ring       DHA      rep2 -49.4 -10.0   2.9
+SRR1605330  ring untreated      rep1 -31.7   1.5   2.8
+SRR1605331  ring untreated      rep2 -30.5  14.8   1.4
+SRR1605336  ring   vehicle      rep1 -55.3 -12.8  -8.7
+SRR1605337  ring   vehicle      rep2 -53.4 -10.8  -8.3
+SRR1605346 schiz       DHA      rep1  19.2  32.0  -4.2
+SRR1605347 schiz       DHA      rep2  11.3  27.1  -6.0
+SRR1605334 schiz untreated      rep1  15.2  38.7   2.5
+SRR1605335 schiz untreated      rep2  19.7  32.2  -1.3
+SRR1605340 schiz   vehicle      rep1  16.8  28.0  -0.9
+SRR1605341 schiz   vehicle      rep2  12.4  24.2   4.8
+SRR1605344 troph       DHA      rep1  16.4 -20.4  21.4
+SRR1605345 troph       DHA      rep2  15.4 -19.8  22.9
+SRR1605332 troph untreated      rep1  35.3 -28.8  -8.1
+SRR1605333 troph untreated      rep2  37.0 -25.3 -13.1
+SRR1605338 troph   vehicle      rep1  36.8 -28.7  -5.4
+SRR1605339 troph   vehicle      rep2  36.6 -30.8  -4.8
+
+========== ring ==========
+size factors, primary model: 1.066 1.086 0.996 0.882 
+primary DHA vs vehicle (4 samples): tested 3090 | padj<0.05 413 (up 113, down 300) | |log2FC|>=1: 101
+three-group (6 samples): vehicle vs untreated 1357 (up 846, down 511) | DHA vs untreated 1256 (up 766, down 490) | DHA vs vehicle 81 (up 4, down 77)
+consensus genes: 7 (up 4, down 3)
+computed : prim 413 | big 101 | veh_un 1357 | dha_un 1256 | dha_veh3 81 | cons 7 
+Day 3 ref: prim 413 | big 101 | veh_un 1357 | dha_un 1256 | dha_veh3 81 | cons 7 
+matches Day 3: TRUE 
+ribosomal protein genes, stat               n=113 | median Wald  -2.74 | matched-null mean  -1.19 | share negative 0.81
+ribosomal protein genes, stat_vs_vehicle    n=125 | median Wald  -1.43 | matched-null mean  -0.60 | share negative 0.74
+ribosomal protein genes, stat_vs_untreated  n=125 | median Wald   2.85 | matched-null mean   0.80 | share negative 0.18
+
+========== troph ==========
+size factors, primary model: 1.056 1.211 0.89 0.893 
+primary DHA vs vehicle (4 samples): tested 4497 | padj<0.05 1703 (up 923, down 780) | |log2FC|>=1: 676
+three-group (6 samples): vehicle vs untreated 317 (up 248, down 69) | DHA vs untreated 1566 (up 869, down 697) | DHA vs vehicle 1312 (up 734, down 578)
+consensus genes: 973 (up 593, down 380)
+computed : prim 1703 | big 676 | veh_un 317 | dha_un 1566 | dha_veh3 1312 | cons 973 
+Day 3 ref: prim 1703 | big 676 | veh_un 317 | dha_un 1566 | dha_veh3 1312 | cons 973 
+matches Day 3: TRUE 
+ribosomal protein genes, stat               n=140 | median Wald  -5.19 | matched-null mean  -0.59 | share negative 0.69
+ribosomal protein genes, stat_vs_vehicle    n=140 | median Wald  -3.43 | matched-null mean  -0.57 | share negative 0.69
+ribosomal protein genes, stat_vs_untreated  n=140 | median Wald  -3.50 | matched-null mean  -0.27 | share negative 0.75
+
+========== schiz ==========
+size factors, primary model: 1.098 1.079 0.926 0.903 
+primary DHA vs vehicle (4 samples): tested 4301 | padj<0.05 0 (up 0, down 0) | |log2FC|>=1: 0
+three-group (6 samples): vehicle vs untreated 225 (up 81, down 144) | DHA vs untreated 340 (up 187, down 153) | DHA vs vehicle 0 (up 0, down 0)
+consensus genes: 0 (up 0, down 0)
+computed : prim 0 | big 0 | veh_un 225 | dha_un 340 | dha_veh3 0 | cons 0 
+Day 3 ref: prim 0 | big 0 | veh_un 225 | dha_un 340 | dha_veh3 0 | cons 0 
+matches Day 3: TRUE 
+ribosomal protein genes, stat               n=136 | median Wald   0.69 | matched-null mean   0.20 | share negative 0.26
+ribosomal protein genes, stat_vs_vehicle    n=138 | median Wald   0.79 | matched-null mean   0.23 | share negative 0.25
+ribosomal protein genes, stat_vs_untreated  n=138 | median Wald   1.73 | matched-null mean   0.21 | share negative 0.14
+ stage tested_primary prim big veh_un dha_un dha_veh3 cons
+  ring           3090  413 101   1357   1256       81    7
+ troph           4497 1703 676    317   1566     1312  973
+ schiz           4301    0   0    225    340        0    0
+
+DONE

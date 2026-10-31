@@ -1,0 +1,54 @@
+Detecting adapter sequence for read1...
+>FlowCell2
+TTTTTTTTTTCAAGCAGAAGACGGCATACGA
+
+Detecting adapter sequence for read2...
+>Nextera_LMP_Read2_External_Adapter
+GATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
+
+Read1 before filtering:
+total reads: 1460218
+total bases: 203892582
+Q20 bases: 196749720(96.4968%)
+Q30 bases: 194962351(95.6201%)
+Q40 bases: 1399813(0.686544%)
+
+Read2 before filtering:
+total reads: 1460218
+total bases: 218245515
+Q20 bases: 204624414(93.7588%)
+Q30 bases: 201705412(92.4213%)
+Q40 bases: 233680(0.107072%)
+
+Read1 after filtering:
+total reads: 1445896
+total bases: 200630345
+Q20 bases: 194341465(96.8654%)
+Q30 bases: 192734785(96.0646%)
+Q40 bases: 1394636(0.695127%)
+
+Read2 after filtering:
+total reads: 1445896
+total bases: 201057138
+Q20 bases: 189743803(94.3731%)
+Q30 bases: 187409840(93.2122%)
+Q40 bases: 233169(0.115972%)
+
+Filtering result:
+reads passed filter: 2891792
+reads failed due to low quality: 10278
+reads failed due to too many N: 18360
+reads failed due to too short: 6
+reads failed due to adapter dimer: 0
+reads with adapter trimmed: 960169
+bases trimmed due to adapters: 16366198
+
+Duplication rate: 9.56419%
+
+Insert size peak (evaluated by paired-end reads): 148
+
+JSON report: /kaggle/working/project13/results/fastp/SRR1605342.json
+HTML report: /kaggle/working/project13/results/fastp/SRR1605342.html
+
+fastp -i fastq/SRR1605342_1.fastq.gz -I fastq/SRR1605342_2.fastq.gz -o fastq/SRR1605342_t1.fastq.gz -O fastq/SRR1605342_t2.fastq.gz --detect_adapter_for_pe -w 4 --length_required 30 -j /kaggle/working/project13/results/fastp/SRR1605342.json -h /kaggle/working/project13/results/fastp/SRR1605342.html 
+fastp v1.4.0, time used: 20 seconds

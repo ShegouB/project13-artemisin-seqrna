@@ -1,0 +1,149 @@
+universe 4497
+  consensus_up    593 genes
+  consensus_down  380 genes
+  primary_up      923 genes
+  primary_down    780 genes
+UniProt:
+  direct pairs: 13876 | kept (known GO ID, in universe): 12488 | propagated pairs: 98263 | genes: 3009
+'select()' returned 1:many mapping between keys and columns
+org.Pf.plasmo.db GOALL: pairs 85167 | genes 3819
+'select()' returned 1:1 mapping between keys and columns
+
+=== terms tested, significant (BH < 0.05), and after redundancy reduction ===
+  source           list ont tested significant reduced
+ uniprot   consensus_up  BP    437           9       4
+ uniprot   consensus_up  MF    227           8       2
+ uniprot   consensus_up  CC    163          22      10
+ uniprot consensus_down  BP    432          30       7
+ uniprot consensus_down  MF    225           4       2
+ uniprot consensus_down  CC    166          17       4
+ uniprot     primary_up  BP    483          10       5
+ uniprot     primary_up  MF    253           7       2
+ uniprot     primary_up  CC    187          20       9
+ uniprot   primary_down  BP    481          38      10
+ uniprot   primary_down  MF    249           6       4
+ uniprot   primary_down  CC    193          23       8
+    bioc   consensus_up  BP    283           5       1
+    bioc   consensus_up  MF    159           4       2
+    bioc   consensus_up  CC    123          17       6
+    bioc consensus_down  BP    269          36       6
+    bioc consensus_down  MF    167           6       4
+    bioc consensus_down  CC    117          16       3
+    bioc     primary_up  BP    321          21       5
+    bioc     primary_up  MF    180           4       2
+    bioc     primary_up  CC    136          17       6
+    bioc   primary_down  BP    299          55       8
+    bioc   primary_down  MF    186           4       2
+    bioc   primary_down  CC    131          19       8
+
+=== UniProt, consensus_up: top reduced terms ===
+-- BP --
+         ID                                          Description Count
+ GO:0044403 biological process involved in symbiotic interaction    45
+ GO:0020035             adhesion of symbiont to microvasculature    22
+ GO:0016310                                      phosphorylation    15
+ GO:0044409                             symbiont entry into host    11
+ GeneRatio  BgRatio p.adjust
+    45/242 106/2217  1.4e-15
+    22/242  44/2217  7.1e-09
+    15/242  46/2217  3.4e-03
+    11/242  28/2217  4.5e-03
+-- MF --
+         ID                                   Description Count GeneRatio
+ GO:0004672                       protein kinase activity    27    27/267
+ GO:0004722 protein serine/threonine phosphatase activity    11    11/267
+ BgRatio p.adjust
+ 95/2316  0.00081
+ 32/2316  0.01800
+-- CC --
+         ID                 Description Count GeneRatio  BgRatio p.adjust
+ GO:0018995     host cellular component    73    73/309 156/2418  8.6e-26
+ GO:0020036              Maurer's cleft    34    34/309  65/2418  1.4e-13
+ GO:0020003 symbiont-containing vacuole    20    20/309  48/2418  7.7e-06
+ GO:0020009                   microneme    11    11/309  18/2418  2.8e-05
+ GO:0009986                cell surface    10    10/309  18/2418  2.5e-04
+
+=== UniProt, consensus_down: top reduced terms ===
+-- BP --
+         ID                                          Description Count
+ GO:0006412                                          translation   102
+ GO:0002181                              cytoplasmic translation    25
+ GO:0006414                             translational elongation    12
+ GO:1901136            carbohydrate derivative catabolic process    10
+ GO:0072527     pyrimidine-containing compound metabolic process     8
+ GO:0043632 modification-dependent macromolecule catabolic proce    22
+ GO:0009117                         nucleotide metabolic process    18
+ GeneRatio  BgRatio p.adjust
+   102/265 267/2217  4.6e-31
+    25/265  51/2217  9.1e-09
+    12/265  24/2217  6.9e-04
+    10/265  26/2217  1.4e-02
+     8/265  17/2217  1.4e-02
+    22/265  98/2217  3.4e-02
+    18/265  74/2217  3.4e-02
+-- MF --
+         ID                            Description Count GeneRatio  BgRatio
+ GO:0003735     structural constituent of ribosome    77    77/267 140/2316
+ GO:0003746 translation elongation factor activity     9     9/267  15/2316
+ p.adjust
+  4.1e-37
+  6.3e-04
+-- CC --
+         ID                                        Description Count GeneRatio
+ GO:0022626                                 cytosolic ribosome    70    70/273
+ GO:0022627                  cytosolic small ribosomal subunit    29    29/273
+ GO:0005839                            proteasome core complex     8     8/273
+ GO:0005852 eukaryotic translation initiation factor 3 complex     5     5/273
+ BgRatio p.adjust
+ 86/2418  3.1e-52
+ 31/2418  8.9e-25
+ 15/2418  1.0e-03
+ 11/2418  4.5e-02
+
+=== sensitivity: significant BP terms, UniProt vs org.Pf.plasmo.db ===
+consensus_up    UniProt   9 | Bioc   5 | shared   2 | Jaccard 0.17
+consensus_down  UniProt  30 | Bioc  36 | shared  23 | Jaccard 0.53
+primary_up      UniProt  10 | Bioc  21 | shared   6 | Jaccard 0.24
+primary_down    UniProt  38 | Bioc  55 | shared  31 | Jaccard 0.50
+
+=== consensus vs primary lists, significant BP terms (UniProt) ===
+up    consensus   9 | primary  10 | shared   8 | Jaccard 0.73
+down  consensus  30 | primary  38 | shared  25 | Jaccard 0.58
+
+=== org.Pf.plasmo.db, consensus lists: top 5 reduced BP terms ===
+-- consensus_up --
+         ID     Description Count GeneRatio  BgRatio p.adjust
+ GO:0016310 phosphorylation    32    32/239 110/2090  3.3e-05
+-- consensus_down --
+         ID                                       Description Count GeneRatio
+ GO:0006412                                       translation   100   100/250
+ GO:0006414                          translational elongation    11    11/250
+ GO:1901135         carbohydrate derivative metabolic process    22    22/250
+ GO:0051603 proteolysis involved in protein catabolic process    16    16/250
+ GO:0009144  purine nucleoside triphosphate metabolic process    10    10/250
+  BgRatio p.adjust
+ 279/2090  4.5e-28
+  23/2090  2.8e-03
+  91/2090  2.6e-02
+  62/2090  2.6e-02
+  31/2090  2.6e-02
+
+files in results/go:
+ [1] "console_ora.txt"                   "console_sources.txt"              
+ [3] "console_sources2.txt"              "console_stage_overlap.txt"        
+ [5] "go_pairs_bioc_goall.tsv"           "go_pairs_bioc.tsv"                
+ [7] "go_pairs_uniprot_direct.tsv"       "ora_bioc_consensus_down_BP.csv"   
+ [9] "ora_bioc_consensus_down_CC.csv"    "ora_bioc_consensus_down_MF.csv"   
+[11] "ora_bioc_consensus_up_BP.csv"      "ora_bioc_consensus_up_CC.csv"     
+[13] "ora_bioc_consensus_up_MF.csv"      "ora_bioc_primary_down_BP.csv"     
+[15] "ora_bioc_primary_down_CC.csv"      "ora_bioc_primary_down_MF.csv"     
+[17] "ora_bioc_primary_up_BP.csv"        "ora_bioc_primary_up_CC.csv"       
+[19] "ora_bioc_primary_up_MF.csv"        "ora_summary.csv"                  
+[21] "ora_uniprot_consensus_down_BP.csv" "ora_uniprot_consensus_down_CC.csv"
+[23] "ora_uniprot_consensus_down_MF.csv" "ora_uniprot_consensus_up_BP.csv"  
+[25] "ora_uniprot_consensus_up_CC.csv"   "ora_uniprot_consensus_up_MF.csv"  
+[27] "ora_uniprot_primary_down_BP.csv"   "ora_uniprot_primary_down_CC.csv"  
+[29] "ora_uniprot_primary_down_MF.csv"   "ora_uniprot_primary_up_BP.csv"    
+[31] "ora_uniprot_primary_up_CC.csv"     "ora_uniprot_primary_up_MF.csv"    
+
+DONE

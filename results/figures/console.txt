@@ -1,0 +1,44 @@
+== volcano plots ==
+volcano_ring               plotted 3090 | pass both cutoffs 101 | labelled 15 | floored 0
+volcano_troph              plotted 4497 | pass both cutoffs 676 | labelled 15 | floored 2
+volcano_schiz              plotted 4301 | pass both cutoffs 0 | labelled 0 | floored 0
+Warning messages:
+1: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.
+ℹ The deprecated feature was likely used in the EnhancedVolcano package.
+  Please report the issue to the authors. 
+2: The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.
+ℹ Please use the `linewidth` argument instead.
+ℹ The deprecated feature was likely used in the EnhancedVolcano package.
+  Please report the issue to the authors. 
+volcano_troph_K13set       plotted 4497 | pass both cutoffs 676 | labelled 16 | floored 2
+volcano_ring_K13set        plotted 3090 | pass both cutoffs 101 | labelled 14 | floored 0
+
+== MA plots ==
+maplot_ring                plotted 3497 | K13-compartment genes drawn 15
+maplot_troph               plotted 4497 | K13-compartment genes drawn 16
+maplot_schiz               plotted 4301 | K13-compartment genes drawn 16
+
+== heatmaps (6 samples: untreated, vehicle, DHA) ==
+heatmap_troph_top100_consensus requested 100 | in VST matrix 100
+  drawn: 100 genes
+heatmap_troph_K13set       requested 16 | in VST matrix 16
+  drawn: 16 genes
+heatmap_ring_consensus     requested 7 | in VST matrix 7
+  drawn: 7 genes
+
+files:
+ [1] "console.txt"                        "heatmap_ring_consensus.pdf"        
+ [3] "heatmap_ring_consensus.png"         "heatmap_troph_K13set.pdf"          
+ [5] "heatmap_troph_K13set.png"           "heatmap_troph_top100_consensus.pdf"
+ [7] "heatmap_troph_top100_consensus.png" "maplot_ring.pdf"                   
+ [9] "maplot_ring.png"                    "maplot_schiz.pdf"                  
+[11] "maplot_schiz.png"                   "maplot_troph.pdf"                  
+[13] "maplot_troph.png"                   "volcano_ring_K13set.pdf"           
+[15] "volcano_ring_K13set.png"            "volcano_ring.pdf"                  
+[17] "volcano_ring.png"                   "volcano_schiz.pdf"                 
+[19] "volcano_schiz.png"                  "volcano_troph_K13set.pdf"          
+[21] "volcano_troph_K13set.png"           "volcano_troph.pdf"                 
+[23] "volcano_troph.png"                 
+
+DONE

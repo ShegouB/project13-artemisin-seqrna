@@ -1,0 +1,12 @@
+*.bam
+*.bai
+*.fastq
+*.fastq.gz
+*.fq.gz
+*.ht2
+*.tar.gz
+data/annotation.gff
+.ipynb_checkpoints/
+__pycache__/
+.Rhistory
+.RData

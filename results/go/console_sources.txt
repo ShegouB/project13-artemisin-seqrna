@@ -1,0 +1,28 @@
+trophozoite universe 4497 | primary DEGs 1703 | consensus 973
+GO.db version: 3.22.0 
+
+UniProt columns: Entry | Gene Names (ordered locus) | Gene Ontology IDs | rows: 5394 
+no PF3D7 ordered locus names with GO terms found
+
+org.Pf.plasmo.db is based on old data that are no longer updated.
+  org.Pf.plasmo.db is deprecated and will be removed from Bioconductor
+  version 3.15.
+
+
+org.Pf.plasmo.db installed: TRUE 
+version: 3.22.0 | date: 
+keytypes: ALIAS, ENTREZID, ENZYME, EVIDENCE, EVIDENCEALL, GENENAME, GO, GOALL, ONTOLOGY, ONTOLOGYALL, ORF, PATH, SYMBOL 
+columns: ALIAS, ENZYME, EVIDENCE, EVIDENCEALL, GENENAME, GO, GOALL, ONTOLOGY, ONTOLOGYALL, ORF, PATH, SYMBOL 
+key type used: ALIAS 
+'select()' returned 1:many mapping between keys and columns
+example keys: MAL1P4.01, PF3D7_0100100, PFA0005W 
+
+org.Pf.plasmo.db: 22667 loci with >=1 GO term
+  universe: 3819 of 4497 (84.9%) | primary DEGs: 1508 of 1703 (88.5%) | consensus: 857 of 973 (88.1%)
+  median terms per annotated gene in the universe: 3
+'select()' returned 1:1 mapping between keys and columns
+  BP: 2091 universe genes
+  MF: 2780 universe genes
+  CC: 2911 universe genes
+
+DONE

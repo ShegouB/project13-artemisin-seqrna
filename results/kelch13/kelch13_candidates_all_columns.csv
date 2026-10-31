@@ -1,0 +1,31 @@
+"locus","gene","product","match","ring_bm","ring_lfc","ring_padj","ring_pct","ring_cons","troph_bm","troph_lfc","troph_padj","troph_pct","troph_cons","schiz_bm","schiz_lfc","schiz_padj","schiz_pct","schiz_cons"
+"PF3D7_0104300","UBP1","putative ubiquitin carboxyl-terminal hydrolase 1","symbol",543,0.2,0.61,55,FALSE,565,0.53,0.00073,80,TRUE,1412,0.15,1,48,FALSE
+"PF3D7_0413900","USP13","putative ubiquitin carboxyl-terminal hydrolase 13","product",61,-0.09,0.93,16,FALSE,250,-0.83,2.1e-05,85,FALSE,161,0.46,1,93,FALSE
+"PF3D7_0503600","MyoB","myosin family protein","product",94,0.05,0.95,11,FALSE,69,0.09,0.85,9,FALSE,621,0.34,1,87,FALSE
+"PF3D7_0606000","KIC1","protein KIC1","anchor",529,0.02,0.98,7,FALSE,240,1.15,2.7e-08,91,TRUE,327,-0.01,1,4,FALSE
+"PF3D7_0609700","KIC6","protein KIC6","symbol",240,0.1,0.86,30,FALSE,115,1.61,2.2e-08,91,TRUE,388,0.06,1,20,FALSE
+"PF3D7_0724800",NA,"putative kelch domain-containing protein","product",55,0.18,0.84,31,FALSE,178,0.17,0.55,26,FALSE,253,0.15,1,47,FALSE
+"PF3D7_0813000","KIC7","protein KIC7","symbol",234,0.29,0.42,68,FALSE,252,0.82,8.6e-05,84,TRUE,205,-0.34,1,82,FALSE
+"PF3D7_0914400","KIC3","protein KIC3","symbol",50,0.07,0.95,12,FALSE,85,0.48,0.17,49,FALSE,326,-0.02,1,5,FALSE
+"PF3D7_1014900","KIC8","protein KIC8","symbol",21,0.13,0.94,15,FALSE,77,-0.62,0.077,59,FALSE,375,-0.28,1,77,FALSE
+"PF3D7_1022600","Kelch10","kelch protein K10","product",110,-0.01,0.99,2,FALSE,110,-0.05,0.91,6,FALSE,38,0.16,1,34,FALSE
+"PF3D7_1025000","EPS15","Eps15-like protein","symbol",386,0.02,0.98,6,FALSE,534,0.93,1e-09,93,TRUE,1005,-0.14,1,47,FALSE
+"PF3D7_1122500","KIC10","protein KIC10","symbol",NA,NA,NA,NA,FALSE,29,-1.25,0.021,68,FALSE,24,0.47,1,70,FALSE
+"PF3D7_1125700",NA,"putative kelch domain-containing protein","product",208,-0.07,0.91,20,FALSE,127,1.65,3e-10,93,TRUE,1091,0.08,1,27,FALSE
+"PF3D7_1125800",NA,"putative kelch domain-containing protein","product",414,0.13,0.77,41,FALSE,121,2.11,7.9e-14,96,TRUE,1396,0.19,1,56,FALSE
+"PF3D7_1131600",NA,"Kelch repeat-containing protein","product",NA,NA,NA,NA,FALSE,NA,NA,NA,NA,FALSE,NA,NA,NA,NA,FALSE
+"PF3D7_1138700","KIC5","protein KIC5","symbol",63,0.44,0.46,65,FALSE,35,1,0.048,62,FALSE,91,-0.39,1,78,FALSE
+"PF3D7_1205400",NA,"Kelch repeat-containing protein","product",8,1.36,NA,70,FALSE,26,0.5,0.45,32,FALSE,37,-0.17,1,34,FALSE
+"PF3D7_1210600",NA,"putative kelch protein","product",112,-0.61,0.11,84,FALSE,238,-0.56,0.0067,73,TRUE,115,-0.14,1,36,FALSE
+"PF3D7_1213400",NA,"Kelch repeat-containing protein","product",NA,NA,NA,NA,FALSE,NA,NA,NA,NA,FALSE,13,1.04,1,89,FALSE
+"PF3D7_1218300","AP2-MU","AP-2 complex subunit mu","symbol",174,0.1,0.88,26,FALSE,118,0.82,0.003,76,TRUE,227,0.04,1,14,FALSE
+"PF3D7_1227700","KIC2","protein KIC2","symbol",163,0.13,0.82,35,FALSE,226,0.88,1.4e-05,86,TRUE,448,0.18,1,53,FALSE
+"PF3D7_1246300","KIC4","protein KIC4","symbol",376,0.27,0.39,70,FALSE,290,0.71,0.00015,83,TRUE,865,0.17,1,57,FALSE
+"PF3D7_1251200",NA,"coronin","product",697,0.25,0.38,71,FALSE,173,1.14,1.9e-06,88,FALSE,4262,0.12,1,38,FALSE
+"PF3D7_1329100","MyoF","putative myosin F","symbol",55,0.21,0.82,35,FALSE,428,-0.04,0.85,9,FALSE,459,0.04,1,14,FALSE
+"PF3D7_1342600","MyoA","myosin family protein","product",1354,0.24,0.39,70,FALSE,487,2.22,1.3e-42,100,TRUE,4610,0.19,1,50,FALSE
+"PF3D7_1343700","Kelch13","kelch protein K13","anchor",608,-0.17,0.63,54,FALSE,268,0.94,1e-06,89,TRUE,433,0.04,1,14,FALSE
+"PF3D7_1416200","MCA3","metacaspase-3","product",NA,NA,NA,NA,FALSE,129,-0.44,0.12,54,FALSE,129,0.2,1,48,FALSE
+"PF3D7_1438400","MCA2","metacaspase-2","symbol",22,1.01,0.26,77,FALSE,69,0.28,0.5,29,FALSE,227,0.34,1,83,FALSE
+"PF3D7_1442400","KIC9","protein KIC9","symbol",10,2.2,NA,87,FALSE,110,1.12,2e-04,82,TRUE,93,-0.03,1,7,FALSE
+"PF3D7_1466100","PPKL","protein phosphatase containing kelch-like domains","product",10,0.13,NA,10,FALSE,90,1.37,7.9e-06,87,TRUE,87,0.07,1,19,FALSE

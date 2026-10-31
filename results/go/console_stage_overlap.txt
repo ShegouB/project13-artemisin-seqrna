@@ -1,0 +1,111 @@
+untreated samples 6 | genes with both stage contrasts 4648 | universe (also tested in trophozoite DE) 4423
+stage-defined sets (|log2FC| > 1, padj < 0.05, untreated samples only), size in universe:
+  higher_in_ring_than_troph    1194
+  higher_in_schiz_than_troph   912
+  trough_at_troph              577
+  higher_in_troph_than_ring    986
+  higher_in_troph_than_schiz   836
+  peak_at_troph                242
+DHA lists in universe: consensus_up 560 | consensus_down 380
+
+== overlap of DHA lists with stage-defined sets (hypergeometric; enrichment = observed / expected) ==
+consensus_up    x higher_in_ring_than_troph    overlap  316 of  560 (56%) | expected  151.2 | enrichment 2.09 | p(enriched) 1.5e-56 | p(depleted) 1
+consensus_up    x higher_in_schiz_than_troph   overlap  242 of  560 (43%) | expected  115.5 | enrichment 2.10 | p(enriched) 3.1e-39 | p(depleted) 1
+consensus_up    x trough_at_troph              overlap  199 of  560 (36%) | expected   73.1 | enrichment 2.72 | p(enriched) 3.5e-50 | p(depleted) 1
+consensus_up    x higher_in_troph_than_ring    overlap   46 of  560 (8%) | expected  124.8 | enrichment 0.37 | p(enriched) 1 | p(depleted) 5.6e-21
+consensus_up    x higher_in_troph_than_schiz   overlap   38 of  560 (7%) | expected  105.8 | enrichment 0.36 | p(enriched) 1 | p(depleted) 4.7e-18
+consensus_up    x peak_at_troph                overlap    5 of  560 (1%) | expected   30.6 | enrichment 0.16 | p(enriched) 1 | p(depleted) 1.4e-09
+consensus_down  x higher_in_ring_than_troph    overlap   36 of  380 (9%) | expected  102.6 | enrichment 0.35 | p(enriched) 1 | p(depleted) 1.1e-18
+consensus_down  x higher_in_schiz_than_troph   overlap   12 of  380 (3%) | expected   78.4 | enrichment 0.15 | p(enriched) 1 | p(depleted) 5.1e-25
+consensus_down  x trough_at_troph              overlap    5 of  380 (1%) | expected   49.6 | enrichment 0.10 | p(enriched) 1 | p(depleted) 5.5e-18
+consensus_down  x higher_in_troph_than_ring    overlap  119 of  380 (31%) | expected   84.7 | enrichment 1.40 | p(enriched) 1.3e-05 | p(depleted) 1
+consensus_down  x higher_in_troph_than_schiz   overlap  216 of  380 (57%) | expected   71.8 | enrichment 3.01 | p(enriched) 5e-68 | p(depleted) 1
+consensus_down  x peak_at_troph                overlap   53 of  380 (14%) | expected   20.8 | enrichment 2.55 | p(enriched) 4.4e-11 | p(depleted) 1
+
+share of DHA genes that differ between trophozoite and ring or schizont in untreated samples: consensus_up 76% | consensus_down 79% | all universe genes 67%
+
+== genes behind selected terms (UniProt, consensus lists) ==
+
+GO:0016310: phosphorylation (15 genes; up to 25 by lowest padj)
+         locus  gene                                    product log2FC    padj
+ PF3D7_1238900   PK2            serine/threonine-protein kinase   2.70 6.0e-25
+ PF3D7_1423600  <NA>            serine/threonine-protein kinase   1.78 9.6e-21
+ PF3D7_1436600   PKG              cGMP-dependent protein kinase   1.92 2.0e-16
+ PF3D7_1309200  PPM6 PP2C family serine/threonine-protein phosp   1.08 7.5e-13
+ PF3D7_0610600 CDPK2           calcium-dependent protein kinase   1.24 5.8e-12
+ PF3D7_0214600  STK2 putative serine/threonine protein kinase S   2.26 2.1e-10
+ PF3D7_1123100 CDPK7         calcium-dependent protein kinase 7   0.88 3.3e-09
+ PF3D7_0623800  TKL4      putative tyrosine kinase-like protein   1.17 4.3e-09
+ PF3D7_1337800 CDPK5 CAMK family serine/threonine-protein kinas   2.56 7.9e-08
+ PF3D7_0616000  PDXK                           pyridoxal kinase   1.26 5.1e-07
+ PF3D7_1247500  <NA>   putative serine/threonine protein kinase   1.01 7.3e-05
+ PF3D7_0503500  <NA>                    putative protein kinase   1.47 1.9e-03
+ PF3D7_1450000  <NA>            serine/threonine-protein kinase   0.91 2.7e-03
+ PF3D7_1349300  TKL3               tyrosine kinase-like protein   0.87 2.9e-03
+ PF3D7_1246900   PKB            serine/threonine-protein kinase   0.83 1.1e-02
+
+GO:0044409: symbiont entry into host (11 genes; up to 25 by lowest padj)
+         locus   gene                                    product log2FC    padj
+ PF3D7_1028700  MTRAP                merozoite TRAP-like protein   1.81 3.0e-35
+ PF3D7_0102500 EBA181            erythrocyte binding antigen-181   3.29 4.7e-28
+ PF3D7_1133400   AMA1                  apical membrane antigen 1   1.44 5.4e-23
+ PF3D7_0304600    CSP thrombospondin type-1 domain-containing pr   2.16 8.2e-12
+ PF3D7_0629300     PL                     putative phospholipase   3.56 8.8e-11
+ PF3D7_0731500 EBA175            erythrocyte binding antigen-175   1.50 6.7e-10
+ PF3D7_1035500   MSP6                merozoite surface protein 6   1.71 1.1e-09
+ PF3D7_0808200    PMX              pepsin-like aspartic protease   1.98 8.2e-08
+ PF3D7_0323400   RIPR               EB domain-containing protein   1.76 7.7e-07
+ PF3D7_0423800  CyRPA           cysteine-rich protective antigen   1.62 1.4e-04
+ PF3D7_1035700 DBLMSP duffy binding-like merozoite surface prote   0.71 2.6e-04
+
+GO:0020035: adhesion of symbiont to microvasculature (22 genes; up to 25 by lowest padj)
+         locus   gene                          product log2FC     padj
+ PF3D7_0401800  PfD80 PRESAN domain-containing protein   4.40 2.7e-194
+ PF3D7_1401600   <NA> PRESAN domain-containing protein   2.22  1.0e-31
+ PF3D7_1016800   <NA> PRESAN domain-containing protein   3.23  7.8e-21
+ PF3D7_0801000   <NA> PRESAN domain-containing protein   1.58  9.1e-21
+ PF3D7_0731300 PfG174 PRESAN domain-containing protein   1.64  1.9e-18
+ PF3D7_1477500   <NA> PRESAN domain-containing protein   1.93  1.1e-15
+ PF3D7_1252800   <NA> PRESAN domain-containing protein   2.18  1.2e-14
+ PF3D7_0402100   <NA>          uncharacterized protein   2.88  6.5e-13
+ PF3D7_0731100   PTP2 PRESAN domain-containing protein   1.30  1.7e-12
+ PF3D7_1476200   <NA> PRESAN domain-containing protein   1.57  5.4e-11
+ PF3D7_1201200   <NA>          uncharacterized protein   2.32  6.7e-10
+ PF3D7_0219700 GEXP20 PRESAN domain-containing protein   2.73  1.4e-09
+ PF3D7_1016700   <NA> PRESAN domain-containing protein   3.73  3.8e-09
+ PF3D7_1476300   <NA> PRESAN domain-containing protein   1.39  8.4e-09
+ PF3D7_1016600   <NA> PRESAN domain-containing protein   1.32  3.2e-08
+ PF3D7_1016500   <NA> PRESAN domain-containing protein   3.26  4.1e-08
+ PF3D7_0830600   <NA> PRESAN domain-containing protein   2.12  4.2e-08
+ PF3D7_0424000   <NA> PRESAN domain-containing protein   1.54  1.5e-07
+ PF3D7_1372000   <NA> PRESAN domain-containing protein   7.91  6.7e-07
+ PF3D7_1102500 GEXP02    gametocyte exported protein 2   2.75  4.5e-05
+ PF3D7_1200900   <NA> PRESAN domain-containing protein   1.13  4.6e-04
+ PF3D7_0532200   <NA> PRESAN domain-containing protein   1.45  5.3e-04
+
+GO:0020009: microneme (11 genes; up to 25 by lowest padj)
+         locus   gene                                    product log2FC    padj
+ PF3D7_1028700  MTRAP                merozoite TRAP-like protein   1.81 3.0e-35
+ PF3D7_0102500 EBA181            erythrocyte binding antigen-181   3.29 4.7e-28
+ PF3D7_1136900   SUB2                 subtilisin-like protease 2   2.72 7.2e-24
+ PF3D7_1133400   AMA1                  apical membrane antigen 1   1.44 5.4e-23
+ PF3D7_1301600 EBA140            erythrocyte binding antigen-140   2.65 6.0e-21
+ PF3D7_1114100   ROM1                     rhomboid protease ROM1   1.06 1.2e-10
+ PF3D7_0731500 EBA175            erythrocyte binding antigen-175   1.50 6.7e-10
+ PF3D7_0828800   GAMA            GPI-anchored micronemal antigen   2.42 8.8e-10
+ PF3D7_1337800  CDPK5 CAMK family serine/threonine-protein kinas   2.56 7.9e-08
+ PF3D7_0323400   RIPR               EB domain-containing protein   1.76 7.7e-07
+ PF3D7_0423800  CyRPA           cysteine-rich protective antigen   1.62 1.4e-04
+
+GO:0005839: proteasome core complex (8 genes; up to 25 by lowest padj)
+         locus gene                                  product log2FC    padj
+ PF3D7_0931800 <NA>  putative proteasome subunit beta type-6  -0.89 1.2e-11
+ PF3D7_0608500 <NA>          proteasome subunit alpha type-2  -0.83 1.7e-11
+ PF3D7_1328100 <NA>                  proteasome subunit beta  -0.78 5.8e-09
+ PF3D7_0727400 <NA>          proteasome subunit alpha type-5  -0.75 7.9e-08
+ PF3D7_0807500 <NA>                 proteasome subunit alpha  -0.57 1.5e-05
+ PF3D7_1474800 <NA>                 proteasome subunit alpha  -0.54 4.8e-04
+ PF3D7_0518300 <NA>                  proteasome subunit beta  -0.43 9.7e-04
+ PF3D7_0317000 <NA> putative proteasome subunit alpha type-3  -0.48 1.3e-03
+
+DONE

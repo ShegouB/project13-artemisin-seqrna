@@ -1,0 +1,51 @@
+universe 4497 | primary DEGs 1703 | consensus 973
+
+UniProt columns: Entry | Gene Names | Gene Names (ordered locus) | Gene Names (ORF) | Gene Ontology IDs 
+rows with a PF3D7 ID: 5270 of 5394 
+
+UniProt (direct annotations, not propagated)
+'select()' returned 1:1 mapping between keys and columns
+  any non-root term                  universe 3009 (66.9%) | primary DEGs 1229 (72.2%) | consensus  708 (72.8%)
+  BP non-root term                   universe 2217 (49.3%) | primary DEGs  899 (52.8%) | consensus  507 (52.1%)
+  MF non-root term                   universe 2316 (51.5%) | primary DEGs  956 (56.1%) | consensus  534 (54.9%)
+  CC non-root term                   universe 2418 (53.8%) | primary DEGs 1002 (58.8%) | consensus  582 (59.8%)
+  terms with 10 to 500 universe genes: 224 (of 2600 terms touching the universe)
+
+universe IDs found as ALIAS keys: 4490 of 4497
+ORF key examples: PF3D7_0100100, PF3D7_0100200, PF3D7_0100300 
+'select()' returned 1:many mapping between keys and columns
+
+evidence codes (rows, all genes in universe):
+
+  IEA   ISS   IDA  <NA>   RCA   TAS   ISO   IPI    IC   ISM   IMP   IGI   EXP 
+10714  2695  1645   671   360   285   128   115    52    41    34    16    10 
+   NR   NAS   IEP   IGC    ND 
+   10     7     5     5     2 
+root-term rows: 0 | root-term rows with evidence ND: 0 
+
+org.Pf.plasmo.db direct, roots removed
+'select()' returned 1:1 mapping between keys and columns
+  any non-root term                  universe 3819 (84.9%) | primary DEGs 1508 (88.5%) | consensus  857 (88.1%)
+  BP non-root term                   universe 2090 (46.5%) | primary DEGs  860 (50.5%) | consensus  489 (50.3%)
+  MF non-root term                   universe 2779 (61.8%) | primary DEGs 1135 (66.6%) | consensus  650 (66.8%)
+  CC non-root term                   universe 2910 (64.7%) | primary DEGs 1173 (68.9%) | consensus  675 (69.4%)
+  terms with 10 to 500 universe genes: 221 (of 1800 terms touching the universe)
+
+org.Pf.plasmo.db direct, roots and ND removed
+'select()' returned 1:1 mapping between keys and columns
+  any non-root term                  universe 3819 (84.9%) | primary DEGs 1508 (88.5%) | consensus  857 (88.1%)
+  BP non-root term                   universe 2090 (46.5%) | primary DEGs  860 (50.5%) | consensus  489 (50.3%)
+  MF non-root term                   universe 2779 (61.8%) | primary DEGs 1135 (66.6%) | consensus  650 (66.8%)
+  CC non-root term                   universe 2910 (64.7%) | primary DEGs 1173 (68.9%) | consensus  675 (69.4%)
+  terms with 10 to 500 universe genes: 221 (of 1800 terms touching the universe)
+'select()' returned 1:many mapping between keys and columns
+
+org.Pf.plasmo.db GOALL (propagated), roots removed
+'select()' returned 1:1 mapping between keys and columns
+  any non-root term                  universe 3819 (84.9%) | primary DEGs 1508 (88.5%) | consensus  857 (88.1%)
+  BP non-root term                   universe 2090 (46.5%) | primary DEGs  860 (50.5%) | consensus  489 (50.3%)
+  MF non-root term                   universe 2779 (61.8%) | primary DEGs 1135 (66.6%) | consensus  650 (66.8%)
+  CC non-root term                   universe 2910 (64.7%) | primary DEGs 1173 (68.9%) | consensus  675 (69.4%)
+  terms with 10 to 500 universe genes: 695 (of 3254 terms touching the universe)
+
+DONE

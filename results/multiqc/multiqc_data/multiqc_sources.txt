@@ -1,0 +1,55 @@
+Module	Section	Sample Name	Source
+featureCounts	all_sections	SRR1605342	/kaggle/working/project13/results/counts_all.txt.summary
+featureCounts	all_sections	SRR1605343	/kaggle/working/project13/results/counts_all.txt.summary
+featureCounts	all_sections	SRR1605330	/kaggle/working/project13/results/counts_all.txt.summary
+featureCounts	all_sections	SRR1605331	/kaggle/working/project13/results/counts_all.txt.summary
+featureCounts	all_sections	SRR1605336	/kaggle/working/project13/results/counts_all.txt.summary
+featureCounts	all_sections	SRR1605337	/kaggle/working/project13/results/counts_all.txt.summary
+featureCounts	all_sections	SRR1605346	/kaggle/working/project13/results/counts_all.txt.summary
+featureCounts	all_sections	SRR1605347	/kaggle/working/project13/results/counts_all.txt.summary
+featureCounts	all_sections	SRR1605334	/kaggle/working/project13/results/counts_all.txt.summary
+featureCounts	all_sections	SRR1605335	/kaggle/working/project13/results/counts_all.txt.summary
+featureCounts	all_sections	SRR1605340	/kaggle/working/project13/results/counts_all.txt.summary
+featureCounts	all_sections	SRR1605341	/kaggle/working/project13/results/counts_all.txt.summary
+featureCounts	all_sections	SRR1605344	/kaggle/working/project13/results/counts_all.txt.summary
+featureCounts	all_sections	SRR1605345	/kaggle/working/project13/results/counts_all.txt.summary
+featureCounts	all_sections	SRR1605332	/kaggle/working/project13/results/counts_all.txt.summary
+featureCounts	all_sections	SRR1605333	/kaggle/working/project13/results/counts_all.txt.summary
+featureCounts	all_sections	SRR1605338	/kaggle/working/project13/results/counts_all.txt.summary
+featureCounts	all_sections	SRR1605339	/kaggle/working/project13/results/counts_all.txt.summary
+Bowtie 2 / HiSAT2	all_sections	SRR1605330	/kaggle/working/project13/results/hisat2/SRR1605330.summary
+Bowtie 2 / HiSAT2	all_sections	SRR1605331	/kaggle/working/project13/results/hisat2/SRR1605331.summary
+Bowtie 2 / HiSAT2	all_sections	SRR1605332	/kaggle/working/project13/results/hisat2/SRR1605332.summary
+Bowtie 2 / HiSAT2	all_sections	SRR1605333	/kaggle/working/project13/results/hisat2/SRR1605333.summary
+Bowtie 2 / HiSAT2	all_sections	SRR1605334	/kaggle/working/project13/results/hisat2/SRR1605334.summary
+Bowtie 2 / HiSAT2	all_sections	SRR1605335	/kaggle/working/project13/results/hisat2/SRR1605335.summary
+Bowtie 2 / HiSAT2	all_sections	SRR1605336	/kaggle/working/project13/results/hisat2/SRR1605336.summary
+Bowtie 2 / HiSAT2	all_sections	SRR1605337	/kaggle/working/project13/results/hisat2/SRR1605337.summary
+Bowtie 2 / HiSAT2	all_sections	SRR1605338	/kaggle/working/project13/results/hisat2/SRR1605338.summary
+Bowtie 2 / HiSAT2	all_sections	SRR1605339	/kaggle/working/project13/results/hisat2/SRR1605339.summary
+Bowtie 2 / HiSAT2	all_sections	SRR1605340	/kaggle/working/project13/results/hisat2/SRR1605340.summary
+Bowtie 2 / HiSAT2	all_sections	SRR1605341	/kaggle/working/project13/results/hisat2/SRR1605341.summary
+Bowtie 2 / HiSAT2	all_sections	SRR1605342	/kaggle/working/project13/results/hisat2/SRR1605342.summary
+Bowtie 2 / HiSAT2	all_sections	SRR1605343	/kaggle/working/project13/results/hisat2/SRR1605343.summary
+Bowtie 2 / HiSAT2	all_sections	SRR1605344	/kaggle/working/project13/results/hisat2/SRR1605344.summary
+Bowtie 2 / HiSAT2	all_sections	SRR1605345	/kaggle/working/project13/results/hisat2/SRR1605345.summary
+Bowtie 2 / HiSAT2	all_sections	SRR1605346	/kaggle/working/project13/results/hisat2/SRR1605346.summary
+Bowtie 2 / HiSAT2	all_sections	SRR1605347	/kaggle/working/project13/results/hisat2/SRR1605347.summary
+fastp	all_sections	SRR1605330	/kaggle/working/project13/results/fastp/SRR1605330.json
+fastp	all_sections	SRR1605331	/kaggle/working/project13/results/fastp/SRR1605331.json
+fastp	all_sections	SRR1605332	/kaggle/working/project13/results/fastp/SRR1605332.json
+fastp	all_sections	SRR1605333	/kaggle/working/project13/results/fastp/SRR1605333.json
+fastp	all_sections	SRR1605334	/kaggle/working/project13/results/fastp/SRR1605334.json
+fastp	all_sections	SRR1605335	/kaggle/working/project13/results/fastp/SRR1605335.json
+fastp	all_sections	SRR1605336	/kaggle/working/project13/results/fastp/SRR1605336.json
+fastp	all_sections	SRR1605337	/kaggle/working/project13/results/fastp/SRR1605337.json
+fastp	all_sections	SRR1605338	/kaggle/working/project13/results/fastp/SRR1605338.json
+fastp	all_sections	SRR1605339	/kaggle/working/project13/results/fastp/SRR1605339.json
+fastp	all_sections	SRR1605340	/kaggle/working/project13/results/fastp/SRR1605340.json
+fastp	all_sections	SRR1605341	/kaggle/working/project13/results/fastp/SRR1605341.json
+fastp	all_sections	SRR1605342	/kaggle/working/project13/results/fastp/SRR1605342.json
+fastp	all_sections	SRR1605343	/kaggle/working/project13/results/fastp/SRR1605343.json
+fastp	all_sections	SRR1605344	/kaggle/working/project13/results/fastp/SRR1605344.json
+fastp	all_sections	SRR1605345	/kaggle/working/project13/results/fastp/SRR1605345.json
+fastp	all_sections	SRR1605346	/kaggle/working/project13/results/fastp/SRR1605346.json
+fastp	all_sections	SRR1605347	/kaggle/working/project13/results/fastp/SRR1605347.json

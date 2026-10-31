@@ -1,0 +1,288 @@
+---
+title: "Transcriptomic response of Plasmodium falciparum to dihydroartemisinin (GSE62132): a reproducible two-replicate re-analysis"
+author: "B. O. Djagou (GitHub: ShegouB)"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+    self_contained: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, fig.align = "center", out.width = "92%")
+P <- "/kaggle/working/project13"
+f <- function(...) file.path(P, ...)
+need <- c("data/samples.tsv", "results/alignment_qc.tsv", "results/deseq2/summary_by_stage.csv",
+  "results/deseq2/composition_by_sample.csv", "results/deseq2/pca_18samples.png",
+  "results/kelch13/setA_per_gene.csv", "results/kelch13/set_tests.csv", "results/kelch13/setA_stage_adjusted_troph.csv",
+  "results/go/ora_summary.csv", "results/go/ora_uniprot_consensus_up_BP.csv", "results/go/ora_uniprot_consensus_down_BP.csv",
+  "results/go/ora_uniprot_consensus_up_CC.csv", "results/go/ora_uniprot_consensus_down_CC.csv",
+  "results/go/ora_uniprot_consensus_down_MF.csv", "results/go/ora_uniprot_consensus_up_MF.csv",
+  "results/figures/volcano_troph.png", "results/figures/volcano_ring.png", "results/figures/volcano_schiz.png",
+  "results/figures/volcano_troph_K13set.png", "results/figures/maplot_troph.png", "results/figures/maplot_ring.png",
+  "results/figures/maplot_schiz.png", "results/figures/heatmap_troph_top100_consensus.png",
+  "results/figures/heatmap_troph_K13set.png", "results/figures/heatmap_ring_consensus.png",
+  "results/figures/go_bp_dotplot_uniprot.png", "results/reference_release.txt")
+miss <- need[!file.exists(f(need))]
+if (length(miss)) stop("missing files: ", paste(miss, collapse = ", "))
+rd <- function(p, ...) read.csv(f(p), stringsAsFactors = FALSE, check.names = FALSE, ...)
+kab <- function(x, ...) knitr::kable(x, row.names = FALSE, ...)
+fig <- function(p) knitr::include_graphics(f(p))
+```
+
+# Summary
+
+This report re-analyses a public RNA-seq dataset (GEO GSE62132, ENA project PRJNA263263). *P. falciparum* K1 parasites at three life-cycle stages were exposed to 500 nM dihydroartemisinin (DHA), to the 0.1% DMSO vehicle, or to nothing (untreated), with **two** biological replicates per condition. The Project 13 brief asked for three replicates per group, and this dataset has two, so every result should be read with that limit in mind.
+
+* **Reproducibility.** The whole analysis was rebuilt in a fresh notebook from public accessions with saved scripts. Assigned fragment counts for all 18 samples were identical to an earlier independent run.
+* **Trophozoite (supported).** DHA vs vehicle: 1,703 of 4,497 tested genes at padj < 0.05 (923 up, 780 down) and 973 consensus genes (significant and in the same direction against both vehicle and untreated controls). Translation machinery is lower in DHA (ribosomal proteins, translation factors, proteasome core), and invasion-related, exported-protein and kinase genes are higher.
+* **Ring (tentative).** The result depends on the control: 413 genes against vehicle on 4 samples, 81 in the three-group model, and 7 consensus genes.
+* **Schizont (negative control).** No gene responds to DHA relative to vehicle.
+* **Stage.** In trophozoites the DHA-up genes are mostly genes that are low at the trophozoite stage in untreated parasites and higher at ring and schizont, and the DHA-down genes are mostly those that peak at trophozoite. The data cannot separate a drug-specific effect from a stage-related flattening, a mixed population, or both.
+* **kelch13-pathway genes.** 12 of 16 K13-compartment genes are significantly higher in trophozoites, but after adjusting for stage position the set is not distinguishable from random expression-matched genes. Ring and schizont show no signal. This analysis does not support a K13-specific transcriptional response and cannot address resistance, which is mostly mediated at the protein level.
+
+# Background and question
+
+Artemisinin-based drugs are the backbone of malaria treatment, and resistance threatens them. The brief for this project proposes that knowing which genes are dysregulated in artemisinin-treated parasites can reveal resistance mechanisms before they appear as clinical treatment failures, which is relevant for malaria programmes in West Africa. The questions are: which genes and processes respond to DHA, how reliable are these results with two replicates, and do genes of the kelch13 pathway change in expression?
+
+# Data and design
+
+```{r samples}
+smp <- read.delim(f("data/samples.tsv"))
+kab(smp, caption = "The 18 runs (all paired-end, strand-specific). Treatment 'untreated' = no vehicle, 'vehicle' = 0.1% DMSO, 'DHA' = 500 nM DHA.")
+```
+
+The DHA exposure used for the RNA-seq comparison was short (about 1 h, as reported for this study). Vehicle is the matched control for DHA, because DHA is dissolved in DMSO. The untreated samples allow the effect of DMSO and handling to be measured and give an independent reference for stage differences. The strain is K1, and reads were mapped to the 3D7 reference, so some mismatch is expected.
+
+# Methods
+
+* **Reference.** NCBI RefSeq assembly GCF_000002765.6 (`r readLines(f("results/reference_release.txt"))[1]`): 14 nuclear chromosomes (23,292,622 bp) and 5,611 genes with exons (including non-coding RNA genes). The apicoplast and mitochondrial genomes are not in this file. PlasmoDB downloads could not be scripted (its pages are rendered by JavaScript), so RefSeq was used. Gene identifiers keep the PF3D7 form.
+* **Reads.** FASTQ files were downloaded from ENA, trimmed with fastp (`--detect_adapter_for_pe --length_required 30`), and aligned with HISAT2 2.2.3 (`--rna-strandness RF --max-intronlen 5000`) to an index built with known splice sites (8,770 splice-site lines and 13,387 exon lines from the annotation). Library strandedness was established empirically (see Quality control).
+* **Counting.** featureCounts 2.1.1 with `-p --countReadPairs -C -s 2 -t exon -g gene_id`. Singleton pairs were kept (`-B` would have discarded about a quarter of the pairs in a shallow dataset).
+* **Differential expression.** DESeq2 1.50.2 per life-cycle stage, because stages differ far more than any drug effect. Primary model: DHA vs vehicle on the four matched samples (`~ treatment`). Three-group model on all six samples of the stage (untreated, vehicle, DHA). Genes with at least 10 counts in at least 2 samples were kept; Wald test, Benjamini-Hochberg adjustment, alpha = 0.05; apeglm shrinkage for ranking and plots.
+* **Consensus genes.** Significant (padj < 0.05) against both vehicle and untreated controls, with the same sign.
+* **Gene-set tests.** The median Wald statistic, the number of significant genes and the number of consensus genes in a set were compared with 5,000 random sets matched on expression decile (permutation p-values are optimistic because set members are co-regulated, so effect sizes matter more).
+* **GO enrichment.** Over-representation analysis (clusterProfiler 4.18.4) with a universe of the 4,497 genes tested in trophozoite, annotations from UniProt (taxon 36329, propagated to ancestors with GO.db, terms of 10 to 500 genes), BH adjustment per ontology, and redundancy reduction (terms whose gene lists overlap by 50% or more are collapsed to the most significant). The deprecated `org.Pf.plasmo.db` package served as a sensitivity check.
+* **Software.** R 4.5.3, HISAT2 2.2.3, featureCounts 2.1.1, samtools 1.24, fastp 1.4.0, MultiQC 1.35, seqkit 2.14.0, gffread 0.12.9, DESeq2 1.50.2, apeglm 1.32.0, clusterProfiler 4.18.4, EnhancedVolcano 1.28.2, ComplexHeatmap 2.26.1 (full environment files are in `results/`).
+
+# Quality control
+
+```{r qc-table}
+aq <- read.delim(f("results/alignment_qc.tsv"))
+kab(aq[, c("run", "sample", "overall_align", "conc_1x", "assigned_pct", "multi_pct", "unmapped_pct", "nofeature_pct", "fragments_counted")],
+    col.names = c("Run", "Sample", "HISAT2 overall %", "Concordant once %", "Assigned %", "Multi-mapped %", "Unmapped %", "No feature %", "Fragments counted"),
+    caption = "Alignment and counting summary per sample (percentages of counted fragments).")
+```
+
+Assigned fragment counts were identical to an earlier independent run in `r sum(aq$diff_vs_day2 == 0)` of `r nrow(aq)` samples, and between `r format(min(aq$fragments_counted), big.mark = ",")` and `r format(max(aq$fragments_counted), big.mark = ",")` fragments were counted per sample.
+
+* **Strandedness.** On a 500,000-pair test, `-s 2` assigned 346,820 pairs against 11,471 for `-s 1`, so the library is reverse-stranded. Strand-aware counting also reduced ambiguous assignments from 4,788 to 34.
+* **Adapter read-through.** In the test sample, one mate failed to align far more often than the other, and unmapped reads carried the Illumina adapter start. Trimming raised the overall alignment rate from 83.84% to 92.82% and the share of concordant pairs from 65.6% to 86.9%.
+* **Read loss.** Multi-mapped fragments (3.5% to 12%) come from AT-rich low-complexity sequence and multigene families, and unmapped fragments are higher in schizont (about 8 to 9.5%) than in the other stages (2 to 5%). The cause of the schizont excess was not investigated.
+* **Counted fragments exceed the ENA read counts** by roughly 2% to 7% per sample, for a reason that was not identified. DESeq2 uses only assigned counts and its own size factors.
+
+```{r pca, fig.cap = "PCA of all 18 samples (VST, top 500 variable genes). Stage dominates PC1 and PC2."}
+knitr::include_graphics(f("results/deseq2/pca_18samples.png"))
+```
+
+```{r comp}
+cp <- rd("results/deseq2/composition_by_sample.csv"); names(cp)[1] <- "run"
+kab(cp, caption = "Share of assigned fragments from rRNA loci and ribosomal protein genes.")
+```
+
+Ring vehicle libraries carry more rRNA (0.46% and 0.71%) than ring DHA (0.10% and 0.12%) and than the other samples (0.02% to 0.43%). Ribosomal protein genes make up 10% to 12% of trophozoite untreated and vehicle libraries and about 7% of trophozoite DHA libraries. GEO lists a single extraction protocol for all samples, so the cause of the ring composition differences is unknown. Re-estimating DESeq2 size factors without ribosomal and rRNA genes changed DEG counts by 1% or less.
+
+# Results
+
+## Differential expression by stage
+
+```{r de-summary}
+sm <- rd("results/deseq2/summary_by_stage.csv")
+names(sm) <- c("Stage", "Genes tested (primary)", "padj<0.05, DHA vs vehicle", "... and |log2FC|>=1", "Vehicle vs untreated (3-group)", "DHA vs untreated (3-group)", "DHA vs vehicle (3-group)", "Consensus genes")
+kab(sm, caption = "Number of genes at padj < 0.05. The primary model uses the four matched samples; the three-group model uses all six.")
+```
+
+* **Trophozoite:** 923 genes up and 780 down in the primary model (676 with |log2FC| >= 1), and 973 consensus genes (593 up, 380 down). Vehicle differs little from untreated (317 genes).
+* **Ring:** 113 up and 300 down in the primary model (101 with |log2FC| >= 1), but vehicle differs from untreated in 1,357 genes and DHA vs vehicle gives only 81 genes in the three-group model. The ring comparison depends on the control and is tentative.
+* **Schizont:** no gene responds to DHA relative to vehicle, while vehicle and DHA both differ from untreated (225 and 340 genes), which indicates a DMSO or handling difference shared by both treated groups.
+
+```{r volc-troph, fig.cap = "Trophozoite, DHA vs vehicle (DESeq2 Wald test, n = 2 per group). Unshrunk log2 fold change. The 15 labelled genes have the lowest adjusted p-values. Two genes with padj < 1e-80 are drawn at 1e-80."}
+fig("results/figures/volcano_troph.png")
+```
+
+```{r ma-troph, fig.cap = "Trophozoite MA plot (apeglm-shrunk log2 fold change). Open circles: K13-compartment genes. The smoother shows an expression-dependent drift that follows the composition shift (highly expressed ribosomal genes fall)."}
+fig("results/figures/maplot_troph.png")
+```
+
+```{r heat-troph, fig.cap = "Trophozoite, top 100 consensus genes by adjusted p-value, rows z-scored. Genes were selected because they differ between groups, so separation of the groups is guaranteed by the selection and illustrates the result without validating it. The colour scale is capped at +/-2."}
+fig("results/figures/heatmap_troph_top100_consensus.png")
+```
+
+```{r volc-ring, fig.cap = "Ring, DHA vs vehicle. Tentative: the result depends on the choice of control."}
+fig("results/figures/volcano_ring.png")
+```
+
+```{r heat-ring, fig.cap = "Ring consensus genes (7). For several genes, vehicle lies between untreated and DHA, so DMSO moves expression in the same direction as DHA, only less."}
+fig("results/figures/heatmap_ring_consensus.png")
+```
+
+```{r volc-schiz, fig.cap = "Schizont, DHA vs vehicle: no significant genes (negative control)."}
+fig("results/figures/volcano_schiz.png")
+```
+
+## Robustness
+
+* **Choice of method (computed in Week 13, Day 4 on identical counts).** edgeR (TMM, quasi-likelihood) called more genes than DESeq2 on the genes tested by both (798 vs 413 in ring, 2,530 vs 1,701 in trophozoite; 0 in schizont), with Spearman correlation 0.997 to 1.000 between test statistics. DESeq2 never called a gene that edgeR missed, and edgeR-only genes had low counts (median mean count 83 and 86). DESeq2 with vehicle as control is therefore the primary result, and edgeR's extra calls are treated as candidates.
+* **Size factors and composition.** TMM and DESeq2 scaling correlated 0.984 to 1.000, so the composition shift is not a DESeq2 artifact.
+* **Replicate structure.** A model with a replicate term gave fold changes with Spearman >= 0.99 against the primary model. In schizont, splitting the four samples by replicate number gave 38 to 118 DEGs, so replicates are not exchangeable there.
+* **Ribosomal protein genes** (median Wald statistic against expression-matched random sets):
+
+```{r ribo}
+rb <- data.frame(Stage = c("Ring", "Trophozoite", "Schizont"),
+  `Primary (vs vehicle): median, random` = c("-2.74, -1.19", "-5.19, -0.59", "+0.69, +0.20"),
+  `3-group vs vehicle` = c("-1.43, -0.60", "-3.43, -0.57", "+0.79, +0.23"),
+  `3-group vs untreated` = c("+2.85, +0.80", "-3.50, -0.27", "+1.73, +0.21"), check.names = FALSE)
+kab(rb)
+```
+
+In trophozoite, ribosomal protein genes fall against both controls. In ring they fall only against vehicle and rise against untreated, so the ring ribosomal decrease reflects a high vehicle baseline.
+
+## kelch13-pathway genes
+
+The gene set (16 genes, fixed before expression was examined) is the K13 compartment from the literature: K13 (PF3D7_1343700), KIC1 to KIC10, UBP1, EPS15, AP2-MU, MyoF and MCA2. Candidate genes were found by name in the annotation and curated by reading names and products.
+
+```{r k13-gene}
+pg <- rd("results/kelch13/setA_per_gene.csv")
+kab(pg[, c("name", "locus", "troph_bm", "troph_lfc", "troph_padj", "ring_bm", "ring_lfc", "ring_padj", "schiz_lfc")],
+    col.names = c("Gene", "Locus", "Troph mean count", "Troph log2FC", "Troph padj", "Ring mean count", "Ring log2FC", "Ring padj", "Schiz log2FC"),
+    caption = "K13-compartment genes, DHA vs vehicle (primary model). NA: not tested (low counts).")
+```
+
+```{r k13-sets}
+st <- rd("results/kelch13/set_tests.csv")
+st[, c("sig_random", "cons_random", "med_wald", "med_random")] <- round(st[, c("sig_random", "cons_random", "med_wald", "med_random")], 2)
+st[, c("p_sig", "p_cons", "p_med")] <- signif(st[, c("p_sig", "p_cons", "p_med")], 2)
+kab(st, caption = "Set tests against 5,000 expression-matched random sets. Set B is a comparison set of other kelch-domain proteins (defined after part of their expression had been seen).")
+```
+
+In trophozoites 12 of 16 genes are significantly higher (K13 itself: log2FC 0.94, padj 1e-6), and the set is shifted well beyond random sets. However, these genes have a pronounced stage profile (low at trophozoite, higher in ring and schizont). After removing the part of the DHA effect that the stage axes predict, the set median log2FC falls from 0.82 (random sets: 0.00, p = 0.0004) to 0.15 (random sets: -0.04, p = 0.18):
+
+```{r k13-adj}
+sa <- rd("results/kelch13/setA_stage_adjusted_troph.csv")
+kab(sa, caption = "Trophozoite: K13-compartment genes on the stage axes (untreated samples only; a1 = trophozoite vs ring, a2 = schizont vs trophozoite) and the DHA log2FC not explained by them (resid). NA: baseMean below 50.")
+```
+
+The adjustment is noisy (two untreated samples per stage) and under-corrects, and the set lies far from the bulk of genes on the stage axes, so a p-value of 0.18 is a failure to detect a residual and not proof of none. In ring, no K13-compartment gene is significant and the set is not shifted (p = 0.16 before adjustment); in schizont there is no signal.
+
+```{r volc-k13, fig.cap = "Trophozoite volcano with K13-compartment genes labelled. They sit in the bulk of the upregulated cloud at moderate significance, while the strongest responses (unlabelled) are other genes."}
+fig("results/figures/volcano_troph_K13set.png")
+```
+
+```{r heat-k13, fig.cap = "Trophozoite K13-compartment genes across all six samples (rows z-scored). Untreated replicate 2 is an outlier for several genes."}
+fig("results/figures/heatmap_troph_K13set.png")
+```
+
+## Functional enrichment (trophozoite)
+
+```{r reduce}
+reduce_terms <- function(r, thr = 0.5, cut = 0.05) {
+  r <- r[r$p.adjust < cut, ]; if (!nrow(r)) return(r)
+  r <- r[order(r$p.adjust, -r$Count), ]; keep <- character(0)
+  for (i in seq_len(nrow(r))) {
+    gi <- strsplit(r$geneID[i], "/")[[1]]; dup <- FALSE
+    for (k in keep) { gk <- strsplit(r$geneID[r$ID == k], "/")[[1]]
+      if (length(intersect(gi, gk)) / length(union(gi, gk)) >= thr) { dup <- TRUE; break } }
+    if (!dup) keep <- c(keep, r$ID[i])
+  }
+  r[r$ID %in% keep, ]
+}
+go_tab <- function(lst, ont, n = 8) {
+  r <- rd(sprintf("results/go/ora_uniprot_%s_%s.csv", lst, ont)); r <- reduce_terms(r[order(r$p.adjust), ])
+  if (!nrow(r)) return(data.frame(note = "no significant terms"))
+  r <- head(r, n)
+  data.frame(Term = r$Description, ID = r$ID, Genes = r$Count, GeneRatio = r$GeneRatio, BgRatio = r$BgRatio, p.adjust = signif(r$p.adjust, 2))
+}
+```
+
+**Lower in DHA (380 consensus genes).**
+
+```{r go-down}
+kab(go_tab("consensus_down", "BP"), caption = "Biological process")
+kab(go_tab("consensus_down", "CC"), caption = "Cellular component")
+```
+
+Translation dominates: 102 of the 265 annotated down genes carry the translation term, and the ribosome terms are the strongest in the molecular function and cellular component ontologies. The proteasome core complex (8 alpha and beta subunits, log2FC -0.4 to -0.9) also falls; these highly expressed housekeeping genes may share one cause with the ribosomal genes and not represent a separate finding.
+
+**Higher in DHA (593 consensus genes).**
+
+```{r go-up}
+kab(go_tab("consensus_up", "BP"), caption = "Biological process")
+kab(go_tab("consensus_up", "CC"), caption = "Cellular component")
+kab(go_tab("consensus_up", "MF"), caption = "Molecular function")
+```
+
+The terms with 'symbiont' and 'host' in their names are the generic GO labels used for parasite genes acting on the host cell. Looking at the genes behind them: the microneme and 'symbiont entry into host' terms are driven by merozoite invasion genes (MTRAP, EBA181, EBA175, EBA140, AMA1, SUB2, RIPR, CyRPA, MSP6, PMX, GAMA); 'phosphorylation' by kinases including PKG, CDPK2, CDPK5, CDPK7, STK2, TKL3, TKL4 and PKB, plus the phosphatase PPM6 and pyridoxal kinase; and 'adhesion of symbiont to microvasculature' by 20 PRESAN-domain proteins (PfD80, PfG174, PTP2, GEXP20 and others), an exported-protein family. That term name does not show an effect on adhesion. The GO annotation of these genes is a label, not a measurement.
+
+```{r go-plot, fig.cap = "GO biological process, redundancy-reduced, consensus genes (UniProt annotation)."}
+fig("results/figures/go_bp_dotplot_uniprot.png")
+```
+
+* **Annotation coverage.** 66.9% of the 4,497 tested genes have a UniProt GO term (49.3% a biological process term), and 84.9% have one in the deprecated Bioconductor package (46.5% a biological process). UniProt was chosen as the primary source because the question concerns biological processes and it is current. For consensus-down BP terms the two sources agree well (Jaccard 0.53), and for consensus-up terms they agree poorly (Jaccard 0.17), so the host-cell terms for the up genes exist only in the current annotation.
+* **Consensus vs primary lists:** 25 of the 30 significant down BP terms and 8 of the 9 up BP terms of the consensus lists are also significant for the primary lists.
+
+## Stage profile of the DHA response
+
+```{r stage-overlap}
+so <- data.frame(
+  `Stage-defined set (untreated samples, universe 4,423 genes)` = c("Higher in ring than trophozoite (1,194)", "Higher in schizont than trophozoite (912)", "Low at trophozoite: higher in both (577)", "Higher in trophozoite than ring (986)", "Higher in trophozoite than schizont (836)", "Peak at trophozoite: higher than both (242)"),
+  `DHA up (560): overlap, expected, enrichment` = c("316 (56%), 151.2, 2.09", "242 (43%), 115.5, 2.10", "199 (36%), 73.1, 2.72", "46 (8%), 124.8, 0.37", "38 (7%), 105.8, 0.36", "5 (1%), 30.6, 0.16"),
+  `DHA down (380): overlap, expected, enrichment` = c("36 (9%), 102.6, 0.35", "12 (3%), 78.4, 0.15", "5 (1%), 49.6, 0.10", "119 (31%), 84.7, 1.40", "216 (57%), 71.8, 3.01", "53 (14%), 20.8, 2.55"), check.names = FALSE)
+kab(so, caption = "Overlap of the trophozoite consensus DHA lists with genes that differ between stages in untreated samples (|log2FC| > 1, padj < 0.05). Hypergeometric p-values for the main enrichments and depletions are below 1e-9.")
+```
+
+DHA-up genes are enriched among genes that are low at trophozoite and higher in both ring and schizont, and DHA-down genes among genes that peak at trophozoite. This is neither a simple delay (ring-high genes up, schizont-high genes down) nor a simple advance (the reverse): both ring-high and schizont-high genes go up. It is consistent with a flattening of the trophozoite-specific profile, a mixture of ring-like and schizont-like parasites, or a direct effect on stage-regulated genes, and bulk data with two replicates cannot distinguish these.
+
+# Interpretation
+
+In trophozoites, a short DHA exposure reduces the transcript level of the translation machinery (cytosolic ribosomal proteins, translation elongation and initiation factors) and of proteasome core subunits, and raises genes of invasion and egress (microneme and merozoite surface proteins, signalling kinases such as PKG and CDPK5) and of the exported-protein system (Maurer's cleft, PTEX components, PRESAN and FIKK families). The reduction in translation machinery agrees with the ribosomal protein finding of the original study, and the whole pattern is compatible with the arrest response described in its title, but these data do not distinguish arrest from a stage shift, a mixed population or direct effects. Schizonts show no response, and rings show a small, control-dependent one. The K13-compartment genes follow the stage profile and do not show evidence of a K13-specific transcriptional response. Resistance to artemisinin is mostly mediated by K13 mutations acting on protein level and function, so a transcript-level result from one short exposure in one strain cannot say anything about resistance.
+
+# Limitations
+
+* Two replicates per condition, with 2 residual degrees of freedom per stage model. Dispersion shrinkage makes the analysis possible and costs power for modest effects; whether the low replicate variability in ring and trophozoite (BCV about 0.07 to 0.09) reflects very reproducible cultures or non-independent replicates is unknown.
+* Shallow depth (about 1.1 to 2.0 million fragments per sample), which limits testing of weakly expressed genes.
+* One dataset, one drug exposure (about 1 h), one strain (K1) mapped to the 3D7 reference, no organelle genomes in the reference.
+* The vehicle itself differs from untreated in every stage, and ring results depend on which control is used.
+* The stage-related component of the DHA response cannot be separated from drug-specific effects with this design.
+* GO annotation is incomplete (about 67% of tested genes have a UniProt term), and several term names (for example the adhesion term) describe annotation labels, not measured effects. Permutation p-values for gene sets ignore co-regulation and are optimistic.
+* The cause of the ring library composition differences and of the excess of counted fragments over ENA read counts is unknown. Unmapped reads were not BLASTed, so host or organelle origin is untested.
+* The exported-protein keyword enrichment used in exploratory work was defined after looking at top genes; the K13 comparison set (other kelch-domain proteins) was defined after part of its expression had been seen.
+
+# Deviations from the brief
+
+| Brief | This analysis | Reason |
+|---|---|---|
+| Treated vs untreated, 3 replicates | DHA vs vehicle (primary) with untreated as a second control, 2 replicates | The dataset has 2 replicates; DMSO is the matched control |
+| Artemisinin | Dihydroartemisinin (500 nM) | The dataset's drug |
+| PlasmoDB reference | NCBI RefSeq GCF_000002765.6 | PlasmoDB downloads cannot be scripted; no organelle genomes |
+| Top-100 DEG heatmap | Top 100 trophozoite consensus genes, six samples | Trophozoite is the supported result |
+| GO enrichment with clusterProfiler | UniProt annotation, propagated; Bioconductor package as sensitivity check | `org.Pf.plasmo.db` is deprecated |
+| One stage | Three stages analysed separately | The dataset covers three stages, and stage differences dominate |
+
+# Problems encountered and how they were resolved
+
+* **Scripted PlasmoDB download failed** (JavaScript-rendered pages saved a web page as the genome file): switched to NCBI RefSeq.
+* **Stale alignment reused** (an earlier test BAM with the same name was silently skipped): found by comparing per-sample rates, fixed; the pipeline now skips a sample only if a completion marker exists.
+* **Gene identifier prefix** (`gene-PF3D7_...` in the counts, `PF3D7_...` in the annotation): found because all annotation-based results were empty (zero ribosomal genes, composition shares of zero, no kelch13 candidates); the prefix is now stripped when the annotation is built, and the analysis script stops if identifiers do not match.
+* **Adapter read-through** found by diagnosing which mate failed to align; fixed by trimming.
+* **Retracted analyses.** A stage regression that built stage axes from the vehicle samples was circular (the same samples form the denominator of the DHA fold change) and was replaced by axes from the independent untreated samples. A partition-based calibration check was only valid for schizont.
+* **First guess about the annotation package was too pessimistic:** its coverage was genuine, but it is deprecated and its data are old, so it served as a sensitivity check.
+
+# Reproducibility
+
+All steps are scripts in `scripts/` (run order: `00_setup.sh`, `01_prepare.sh`, `02_align_count.sh`, `03_deseq2.R`, `04_kelch13.R`, `05_kelch13_sets.R`, `06_kelch13_stage_adjusted.R`, `07_figures.R`, `08_go_sources.R`, `09_go_sources2.R`, `10_go_enrichment.R`, `11_stage_overlap.R`), configured by `scripts/config.sh`. Environments were created with micromamba from conda-forge and bioconda, and the exported environment files are in `results/`. The raw data and the reference are downloaded from ENA and NCBI by the scripts.
+
+```{r session}
+sessionInfo()
+```

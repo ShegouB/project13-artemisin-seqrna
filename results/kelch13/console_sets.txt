@@ -1,0 +1,49 @@
+== per-gene table, Set A (primary model DHA vs vehicle; cons = consensus gene) ==
+  name         locus ring_bm ring_lfc ring_padj ring_cons troph_bm troph_lfc
+   K13 PF3D7_1343700     608    -0.17      0.63     FALSE      268      0.94
+  KIC1 PF3D7_0606000     529     0.02      0.98     FALSE      240      1.15
+  KIC2 PF3D7_1227700     163     0.13      0.82     FALSE      226      0.88
+  KIC3 PF3D7_0914400      50     0.07      0.95     FALSE       85      0.48
+  KIC4 PF3D7_1246300     376     0.27      0.39     FALSE      290      0.71
+  KIC5 PF3D7_1138700      63     0.44      0.46     FALSE       35      1.00
+  KIC6 PF3D7_0609700     240     0.10      0.86     FALSE      115      1.61
+  KIC7 PF3D7_0813000     234     0.29      0.42     FALSE      252      0.82
+  KIC8 PF3D7_1014900      21     0.13      0.94     FALSE       77     -0.62
+  KIC9 PF3D7_1442400      10     2.20        NA     FALSE      110      1.12
+ KIC10 PF3D7_1122500      NA       NA        NA     FALSE       29     -1.25
+  UBP1 PF3D7_0104300     543     0.20      0.61     FALSE      565      0.53
+ EPS15 PF3D7_1025000     386     0.02      0.98     FALSE      534      0.93
+ AP2MU PF3D7_1218300     174     0.10      0.88     FALSE      118      0.82
+  MyoF PF3D7_1329100      55     0.21      0.82     FALSE      428     -0.04
+  MCA2 PF3D7_1438400      22     1.01      0.26     FALSE       69      0.28
+ troph_padj troph_cons schiz_bm schiz_lfc schiz_padj schiz_cons
+    1.0e-06       TRUE      433      0.04          1      FALSE
+    2.7e-08       TRUE      327     -0.01          1      FALSE
+    1.4e-05       TRUE      448      0.18          1      FALSE
+    1.7e-01      FALSE      326     -0.02          1      FALSE
+    1.5e-04       TRUE      865      0.17          1      FALSE
+    4.8e-02      FALSE       91     -0.39          1      FALSE
+    2.2e-08       TRUE      388      0.06          1      FALSE
+    8.6e-05       TRUE      205     -0.34          1      FALSE
+    7.7e-02      FALSE      375     -0.28          1      FALSE
+    2.0e-04       TRUE       93     -0.03          1      FALSE
+    2.1e-02      FALSE       24      0.47          1      FALSE
+    7.3e-04       TRUE     1412      0.15          1      FALSE
+    1.0e-09       TRUE     1005     -0.14          1      FALSE
+    3.0e-03       TRUE      227      0.04          1      FALSE
+    8.5e-01      FALSE      459      0.04          1      FALSE
+    5.0e-01      FALSE      227      0.34          1      FALSE
+
+== set tests vs 5000 random sets matched on expression decile ==
+(one-sided p for 'at least as many significant / consensus genes'; p floor 1/5001; sets are co-regulated, so p is optimistic)
+ring   A_K13_compartment      n=15 | significant  0 (random 1.8, p=1.0000) | consensus  0 (random 0.1, p=1.0000) | median Wald  0.60 (random -0.06, p=0.1640) | share up 0.93 (random 0.49)
+ring   A_without_K13          n=14 | significant  0 (random 1.6, p=1.0000) | consensus  0 (random 0.0, p=1.0000) | median Wald  0.60 (random -0.02, p=0.1704) | share up 1.00 (random 0.49)
+ring   B_other_kelch_domain   n= 7 | significant  0 (random 0.6, p=1.0000) | consensus  0 (random 0.0, p=1.0000) | median Wald  0.17 (random  0.11, p=0.9196) | share up 0.57 (random 0.53)
+troph  A_K13_compartment      n=16 | significant 12 (random 6.5, p=0.0028) | consensus 10 (random 3.7, p=0.0012) | median Wald  3.97 (random  0.09, p=0.0004) | share up 0.81 (random 0.51)
+troph  A_without_K13          n=15 | significant 11 (random 6.0, p=0.0076) | consensus  9 (random 3.4, p=0.0024) | median Wald  3.80 (random  0.10, p=0.0004) | share up 0.80 (random 0.52)
+troph  B_other_kelch_domain   n= 7 | significant  4 (random 2.6, p=0.2422) | consensus  4 (random 1.5, p=0.0342) | median Wald  1.03 (random  0.25, p=0.5369) | share up 0.71 (random 0.53)
+schiz  A_K13_compartment      n=16 | significant  0 (random 0.0, p=1.0000) | consensus  0 (random 0.0, p=1.0000) | median Wald  0.13 (random  0.27, p=0.5271) | share up 0.56 (random 0.65)
+schiz  A_without_K13          n=15 | significant  0 (random 0.0, p=1.0000) | consensus  0 (random 0.0, p=1.0000) | median Wald  0.13 (random  0.26, p=0.5643) | share up 0.53 (random 0.65)
+schiz  B_other_kelch_domain   n= 8 | significant  0 (random 0.0, p=1.0000) | consensus  0 (random 0.0, p=1.0000) | median Wald  0.29 (random  0.09, p=0.4971) | share up 0.75 (random 0.55)
+
+DONE
